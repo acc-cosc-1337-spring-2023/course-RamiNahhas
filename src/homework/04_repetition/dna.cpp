@@ -38,77 +38,53 @@ int gcd (int num1,int num2)
     
 }
 
-void display_menu()
+
+
+   void run_menu()
 {
-cout<<"1- Factorial\n";
-cout<<"2- Greatest Common Divisor\n";
-cout<<"3- Exit\n";
+    char choice;
+    bool exitMenu = false;
+    auto option1 = 0, option2 = 0;
 
-}
 
-void run_menu()
-{   
-    auto option = 0;
-
-    do
-    {
-        display_menu();
-        cout << "Enter menu option: ";
-        cin >> option;
-
-        handle_menu_option(option);
-
-    }
-    while(option !=3);
-}  
-
- void handle_menu_option(int num)
-{ 
-    int option = 0;
-    int option2= 0;
-    char choice = 'c';
-
-    switch (num)
-    {
-    case 1:
-
-        cout << "Selected Factorial Option:  \n";
-        cout << "Enter a number:  \n";
-        cin >> option;
-        //factorial (option);
-        cout << "The factorial of the number you entered is: " << factorial(option) << "\n"; 
-        
-        break;
-    case 2: 
-
-        cout << "Selected Greatest Common Divisor Option:  \n";
-         cout << "Enter 2 numbers:  \n";
-        cin >> option >> option2;
-       // gcd (option, option2);
-        cout << "The GCD is: " << gcd (option, option2) << "\n"; 
-        break;
-        
-    case 3: 
-    {
-        cout << "Selected Exit Option:  \n";
-        cout << "Are you sure you want to exit... \n";
-        cout << "y or n \n" ;
+    do {
+        cout << "1-Factorial" << "\n";
+        cout << "2-Greatest Common Divisor" << "\n";
+        cout << "3-Exit" << "\n";
+        cout << "Enter your choice: ";
         cin >> choice;
 
-        if (choice == 'y' || 'Y')
-        return;
+        switch (choice) {
+        case '1':
+            cout << "Enter a number: ";
+            cin >> option1;
+            cout << factorial(option1) << "\n"
+            break;
 
-        else if (choice == 'n' || 'N')
-        run_menu();
-    }
+        case '2':
+            cout << "Enter two numbers: ";
+            cin >> option1 >> option2;
+            cout << gcd(option1, option2) << "\n";
+            break;
 
-        break;
-
+        case '3':
+            cout << "Are you sure you want to exit? (y/n): ";
+            char confirmExit;
+            cin >> confirmExit;
+            if (confirmExit == 'y' || confirmExit == 'Y') {
+                exitMenu = true;
+            }
+            break;
+            
         default:
-        cout << "Invalid Option:  \n";
+            cout << "Invalid option. Please try again." << "\n";
+            break;
+        }
+    } while (!exitMenu);
 
-        break;
-    }
-
-
+    cout << "Exiting program..." << "\n";
 }
+
+
+ 
+
