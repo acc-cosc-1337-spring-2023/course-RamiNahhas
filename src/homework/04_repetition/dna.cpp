@@ -58,7 +58,7 @@ int gcd (int num1,int num2)
         case '1':
             cout << "Enter a number: ";
             cin >> option1;
-            cout << factorial(option1) << "\n"
+            cout << factorial(option1) << "\n";
             break;
 
         case '2':
