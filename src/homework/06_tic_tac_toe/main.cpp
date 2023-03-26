@@ -7,7 +7,7 @@ int main()
 
     do 
     {
-        cout << "Enter X or 0 for the first player: ";
+        cout << "Enter X or O for the first player: ";
         cin >> player;
 
         game.start_game(player);
@@ -25,16 +25,16 @@ int main()
 
         cout << "Game over!" << "\n";
 
-        cout << "Do you want to play again? (y/n): ";
-        char choice;
+       
         cout << "Would you like to play again? (Y/N): ";
+        char choice;
         cin >> choice;
     
     if (choice == 'y' || choice == 'Y') 
     {
         game.restart_game();
     }
-    } while (player == "y" || player == "Y");
+    } while (player != "n" || player != "N");
 
 	return 0;
 }
