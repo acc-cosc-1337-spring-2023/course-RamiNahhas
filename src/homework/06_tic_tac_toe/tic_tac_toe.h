@@ -11,7 +11,6 @@ using std:: cout;
 using std:: vector;
 
 
-
 class TicTacToe 
 {
 public:
@@ -22,7 +21,9 @@ public:
     void display_board() const;
     bool game_over();
     void restart_game();
+
 private:
+
     string player;
     vector<string> pegs{9, " "};
     bool check_board_full();
