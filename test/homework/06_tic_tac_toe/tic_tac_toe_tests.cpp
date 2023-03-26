@@ -8,10 +8,33 @@ TEST_CASE("Verify Test Configuration", "verification") {
 
 TEST_CASE("test game over function")
 {
-		TicTacToe Instance;
-
-	REQUIRE(Instance.game_over(1)== false);
+	TicTacToe game;
+    game.start_game("X");
 	
+	game.mark_board(1);
+	REQUIRE(game.game_over()== false);
+	
+	game.mark_board(2);
+	REQUIRE(game.game_over()== false);
 
+	game.mark_board(3);
+	REQUIRE(game.game_over()== false);
 
+	game.mark_board(4);
+	REQUIRE(game.game_over()== false);
+
+	game.mark_board(5);
+	REQUIRE(game.game_over()== false);
+
+	game.mark_board(6);
+	REQUIRE(game.game_over()== false);
+
+	game.mark_board(7);
+	REQUIRE(game.game_over()== false);
+
+	game.mark_board(8);
+	REQUIRE(game.game_over()== false);
+
+	game.mark_board(9);
+	REQUIRE(game.game_over()== true);
 }
