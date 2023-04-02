@@ -9,16 +9,16 @@ TicTacToe::TicTacToe() : player("X"), winner("C")
 
 void display_board() const
 {
-    std::cout << "\n";
+    cout << "\n";
     for (int i = 0; i < 9; i++)
     {
-        std::cout << pegs[i];
+        cout << pegs[i];
         if ((i + 1) % 3 == 0)
         {
-            std::cout << "\n";
+            cout << "\n";
         }
     }
-    std::cout << "\n";
+    cout << "\n";
 }
 
 void mark_board(int position)
@@ -27,7 +27,7 @@ void mark_board(int position)
     set_next_player();
 }
 
-void start_game(std::string first_player)
+void start_game(string first_player)
 {
     player = first_player;
     clear_board();
