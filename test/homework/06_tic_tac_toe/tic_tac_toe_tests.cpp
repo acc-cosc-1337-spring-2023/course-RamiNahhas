@@ -38,3 +38,76 @@ TEST_CASE("test game over function")
 	game.mark_board(9);
 	REQUIRE(game.game_over()== true);
 }
+
+
+TEST_CASE("Test first player set to X")
+{
+	TicTacToe game;
+
+	game.start_game("X");
+	REQUIRE(game.get_player()== "X");
+}
+
+
+TEST_CASE("Test first player set to O")
+{
+	TicTacToe game;
+
+	game.start_game("O");
+	REQUIRE(game.get_player()== "O");
+
+}
+
+
+TEST_CASE("Test win by first column")
+{
+	TicTacToe game;
+
+	game.start_game("X");
+	game.mark_board(1);
+	game.mark_board(4);
+	game.mark_board(7);
+	REQUIRE(game.game_over()==true);
+}
+
+TEST_CASE("Test win by second column")
+{
+	
+}
+
+TEST_CASE("Test win by third column")
+{
+	
+}
+
+TEST_CASE("Test win by first row")
+{
+	
+}
+
+TEST_CASE("Test win by second row")
+{
+	
+}
+
+TEST_CASE("Test win by third row")
+{
+	
+}
+
+TEST_CASE("Test win diagonally from top left")
+{
+	
+}
+
+TEST_CASE("Test win diagonally from bottom left")
+{
+	
+}
+
+
+
+
+
+
+
