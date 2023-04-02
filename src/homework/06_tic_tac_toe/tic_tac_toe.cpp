@@ -7,33 +7,33 @@ TicTacToe::TicTacToe() : player("X"), winner("C")
     clear_board();
 }
 
-void display_board() const
+void TicTacToe::display_board() const
 {
-    cout << "\n";
+    std::cout << "\n";
     for (int i = 0; i < 9; i++)
     {
-        cout << pegs[i];
+        std::cout << pegs[i];
         if ((i + 1) % 3 == 0)
         {
-            cout << "\n";
+            std::cout << "\n";
         }
     }
-    cout << "\n";
+    std::cout << "\n";
 }
 
-void mark_board(int position)
+void TicTacToe::mark_board(int position)
 {
     pegs[position - 1] = player;
     set_next_player();
 }
 
-void start_game(string first_player)
+void TicTacToe::start_game(std::string first_player)
 {
     player = first_player;
     clear_board();
 }
 
-bool game_over()
+bool TicTacToe::game_over()
 {
     if (check_column_win() || check_row_win() || check_diagonal_win())
     {
@@ -51,12 +51,12 @@ bool game_over()
     }
 }
 
-string get_winner() const
+string TicTacToe::get_winner() const
 {
     return winner;
 }
 
-bool check_column_win()
+bool TicTacToe::check_column_win()
 {
     for (int i = 0; i < 3; i++)
     {
@@ -68,7 +68,7 @@ bool check_column_win()
     return false;
 }
 
-bool check_row_win()
+bool TicTacToe::check_row_win()
 {
     for (int i = 0; i < 9; i += 3)
     {
@@ -80,7 +80,7 @@ bool check_row_win()
     return false;
 }
 
-bool check_diagonal_win()
+bool TicTacToe::check_diagonal_win()
 {
     if ((pegs[0] == pegs[4] && pegs[4] == pegs[8] && pegs[0] != " ") ||
         (pegs[2] == pegs[4] && pegs[4] == pegs[6] && pegs[2] != " "))
@@ -90,7 +90,7 @@ bool check_diagonal_win()
     return false;
 }
 
-bool check_board_full()
+bool TicTacToe::check_board_full()
 {
     for (auto peg : pegs)
     {
@@ -102,12 +102,12 @@ bool check_board_full()
     return true;
 }
 
-void clear_board()
+void TicTacToe::clear_board()
 {
     pegs = {" ", " ", " ", " ", " ", " ", " ", " ", " "};
 }
 
-void set_next_player()
+void TicTacToe::set_next_player()
 {
     if (player == "X")
     {
@@ -119,7 +119,7 @@ void set_next_player()
     }
 }
 
-void set_winner()
+void TicTacToe::set_winner()
 {
     if (player == "X")
     {
@@ -131,7 +131,7 @@ void set_winner()
     }
 }
 
-string get_player() const
+string TicTacToe::get_player() const
 {
     return player;
 }
