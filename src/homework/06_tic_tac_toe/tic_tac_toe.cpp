@@ -9,8 +9,8 @@ TicTacToe::TicTacToe() : player("X"), winner("C")
 
 void TicTacToe::display_board() const
 {
-     cout << "-------------\n";
-     
+        cout << "-------------\n";
+
     for(int i = 0; i < 9; i += 3) 
     {
         cout << "| " << pegs[i] << " | " << pegs[i+1] << " | " << pegs[i+2] << " |\n";
