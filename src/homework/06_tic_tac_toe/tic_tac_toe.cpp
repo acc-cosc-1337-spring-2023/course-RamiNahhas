@@ -1,21 +1,9 @@
  #include "tic_tac_toe.h"
 
  
-
 TicTacToe::TicTacToe() : player("X"), winner("C")
 {
     clear_board();
-}
-
-void TicTacToe::display_board() const
-{
-        cout << "-------------\n";
-
-    for(int i = 0; i < 9; i += 3) 
-    {
-        cout << "| " << pegs[i] << " | " << pegs[i+1] << " | " << pegs[i+2] << " |\n";
-        cout << "-------------\n";
-    }
 }
 
 void TicTacToe::mark_board(int position)
@@ -132,3 +120,34 @@ string TicTacToe::get_player() const
 {
     return player;
 }
+
+std::ostream& operator<<(std::ostream& out, const TicTacToe& game)
+{
+    out << "-------------\n";
+    for (int i = 0; i < 9; i += 3) 
+    {
+        out << "| " << game.pegs[i] << " | " << game.pegs[i+1] << " | " << game.pegs[i+2] << " |\n";
+        out << "-------------\n";
+    }
+    return out;
+}
+
+std::istream& operator>>(std::istream& in, TicTacToe& game)
+{
+    int position;
+
+    cout << "Enter position for " << game.get_player() << " (1-9): ";
+    in >> position;
+
+    while (position < 1 || position > 9 || game.pegs[position - 1] != " ")
+    {
+        cout << "Invalid position. Please try again.\n";
+        cout << "Enter position for " << game.get_player() << " (1-9): ";
+        in >> position;
+    }
+
+    game.mark_board(position);
+
+    return in;
+}
+

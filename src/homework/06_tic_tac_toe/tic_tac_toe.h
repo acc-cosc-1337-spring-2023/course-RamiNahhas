@@ -11,24 +11,24 @@ using std:: cout;
 using std:: vector;
 
 
-class TicTacToe 
+
+class TicTacToe
 {
 public:
-
-    TicTacToe(); 
+    TicTacToe();
     void start_game(string first_player);
     void mark_board(int position);
     string get_player() const;
     void display_board() const;
     string get_winner() const;
     bool game_over();
-    
-private:
+    friend std::ostream& operator<<(std::ostream& out, const TicTacToe& game);
+    friend std::istream& operator>>(std::istream& in, TicTacToe& game);
 
+private:
     string player;
     vector<string> pegs{9, " "};
     string winner;
-
     void set_next_player();
     void clear_board();
     bool check_board_full() const;
@@ -37,7 +37,7 @@ private:
     bool check_row_win();
     bool check_diagonal_win();
     void set_winner();
-
 };
 
 #endif
+
