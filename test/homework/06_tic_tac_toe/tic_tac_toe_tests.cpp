@@ -169,8 +169,6 @@ TEST_CASE( "Test get winner total tallies correctly")
 	game1.mark_board(3);
 	game1.mark_board(9);
 
-
-
     TicTacToe game3;
     game3.start_game("X");
     game3.mark_board(1);
@@ -183,13 +181,21 @@ TEST_CASE( "Test get winner total tallies correctly")
     game3.mark_board(7);
     game3.mark_board(5);
 
+	REQUIRE(game2.game_over()== true);
+	REQUIRE(game1.game_over()== true);
+	REQUIRE(game3.game_over()== true);
 
-    manager.save_game(game1);
+
     manager.save_game(game2);
+    manager.save_game(game1);
     manager.save_game(game3);
 
-    int o_wins, x_wins, ties;
+    int o_wins;
+	int x_wins;
+	int ties;
     manager.get_winner_total(o_wins, x_wins, ties);
+
+
 
     REQUIRE(o_wins == 1);
     REQUIRE(x_wins == 1);

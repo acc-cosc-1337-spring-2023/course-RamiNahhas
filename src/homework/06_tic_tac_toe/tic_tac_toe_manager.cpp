@@ -24,12 +24,12 @@ void TicTacToeManager::get_winner_total(int& o, int& w, int& t) {
     w = x_win;
     t = ties;
 
-    x_win = 0;
     o_win = 0;
+    x_win = 0;
     ties = 0;
 
     for (const auto& game : games)
-     {
+    {
         update_winner_count(game.get_winner());
     }
 }
