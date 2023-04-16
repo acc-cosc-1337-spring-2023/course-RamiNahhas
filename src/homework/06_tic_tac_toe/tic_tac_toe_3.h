@@ -1,18 +1,21 @@
+
+#include"tic_tac_toe.h"
+
+using std::string, std::vector;
+using namespace std;
+
 #ifndef TICTACTOE3_H
 #define TICTACTOE3_H
 
-#include "tic_tac_toe.h"
-
-class TicTacToe3 : public TicTacToe
+class TicTacToe_3: public TicTacToe
 {
+
 public:
-    TicTacToe3();
-    TicTacToe3(std::vector<std::string> p, std::string winner);
-
+TicTacToe_3():TicTacToe(3){}  
 private:
-    bool check_column_win() override;
-    bool check_row_win() override;
-    bool check_diagonal_win() override;
-};
+bool check_row_win();  
+bool check_col_win();  
+bool check_diag_win();   
 
+};
 #endif
