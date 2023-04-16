@@ -1,10 +1,6 @@
  #include "tic_tac_toe.h"
 
  
-TicTacToe::TicTacToe() : player("X"), winner("C")
-{
-    clear_board();
-}
 
 void TicTacToe::mark_board(int position)
 {
@@ -149,5 +145,10 @@ std::istream& operator>>(std::istream& in, TicTacToe& game)
     game.mark_board(position);
 
     return in;
+}
+
+int TicTacToe::get_board_size() const
+{
+    return pegs.size();
 }
 

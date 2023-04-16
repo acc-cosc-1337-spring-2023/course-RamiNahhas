@@ -1,5 +1,27 @@
 #include "tic_tac_toe_3.h"
 
+TicTacToe3::TicTacToe3() : TicTacToe(3) {}
+
+
+bool TicTacToe3::check_column_win()
+{
+
+    return false;
+}
+
+bool TicTacToe3::check_row_win()
+{
+
+    return false;
+}
+
+bool TicTacToe3::check_diagonal_win()
+{
+
+    return false;
+}
+
+
 /*
 class function check_column_win
 Win by column if and return true if
