@@ -27,12 +27,15 @@ TEST_CASE("Tests correct win total history(TicTacToe_3) using manage.game winner
 	int x = 0;
 	int o = 0;
 	int t = 0;
+	//class TicTacToe_3 
 
 	unique_ptr<TicTacToe> ticTacToe_pt= make_unique<TicTacToe_3>();
 	
 	bool check;
 	
-	
+	//game1 X wins
+	//TicTacToe_3 game;
+	//x_o="X";
 	ticTacToe_pt->start_game("X");
 	ticTacToe_pt->mark_board(1);
 	ticTacToe_pt->mark_board(2);
@@ -40,7 +43,8 @@ TEST_CASE("Tests correct win total history(TicTacToe_3) using manage.game winner
 	ticTacToe_pt->mark_board(4);
 	ticTacToe_pt->mark_board(9);
 
-
+    //game2 O wins
+	//string x_o="O";
 	ticTacToe_pt->start_game("O");
 	ticTacToe_pt->mark_board(1);
 	ticTacToe_pt->mark_board(2);
@@ -48,6 +52,7 @@ TEST_CASE("Tests correct win total history(TicTacToe_3) using manage.game winner
 	ticTacToe_pt->mark_board(4);
 	ticTacToe_pt->mark_board(9);
 
+	//game3 tie using X
 	ticTacToe_pt->start_game("X");
 	ticTacToe_pt->mark_board(1);
 	ticTacToe_pt->mark_board(2);
@@ -71,11 +76,13 @@ if((x =1) && (o=1)&&(t=1))
 	int x;
 	int o;
 	int t;
+	//class TicTacToe_4 
 
 	unique_ptr<TicTacToe> ticTacToe_pt= make_unique<TicTacToe_4>();
 	
 	bool check;
 	
+	//game1 X wins
 	ticTacToe_pt->start_game("X");
 	ticTacToe_pt->mark_board(1);
 	ticTacToe_pt->mark_board(2);
@@ -85,6 +92,7 @@ if((x =1) && (o=1)&&(t=1))
 	ticTacToe_pt->mark_board(4);
 	ticTacToe_pt->mark_board(13);
 
+    //game2 O wins
 	ticTacToe_pt->start_game("O");
 	ticTacToe_pt->mark_board(1);
 	ticTacToe_pt->mark_board(2);
@@ -94,6 +102,7 @@ if((x =1) && (o=1)&&(t=1))
 	ticTacToe_pt->mark_board(4);
 	ticTacToe_pt->mark_board(13);
 
+	//game3 tie using X
 	ticTacToe_pt->start_game("X");
 	ticTacToe_pt->mark_board(1);
 	ticTacToe_pt->mark_board(2);
@@ -127,6 +136,7 @@ TEST_CASE("Tests correct win total history using TicTacToe3 class only")
 	int ties_test=0;
 	string x_o;
 	
+	//game1 X wins
 	TicTacToe_3 game;
 	x_o="X";
 	game.start_game(x_o);
@@ -142,6 +152,7 @@ TEST_CASE("Tests correct win total history using TicTacToe3 class only")
 		{o_win_test= o_win_test+1;}
 		if(game.get_winner() =="C")
 			{ties_test= ties_test+1;}
+    //game2 O wins
 	x_o="O";
 	game.start_game("O");
 	game.mark_board(1);
@@ -157,6 +168,7 @@ if(game.get_winner() =="X")
 		if(game.get_winner() =="C")
 			{ties_test= ties_test+1;}
 
+	//game3 tie
 	x_o="X";
 
 	game.start_game(x_o);
