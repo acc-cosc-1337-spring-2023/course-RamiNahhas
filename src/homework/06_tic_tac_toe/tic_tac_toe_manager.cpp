@@ -1,34 +1,47 @@
 #include "tic_tac_toe_manager.h"
-#include "tic_tac_toe.h"
-#include "tic_tac_toe_3.h"
-#include "tic_tac_toe_4.h"
+#include <iostream>
+#include <memory>
 
-using std::string, std::vector, std::cin, std::cout;
-using namespace std;
+using std::cout;
+using std::unique_ptr;
+using std::move;
 
-
-
-void TicTacToeManager:: save_game(unique_ptr<TicTacToe>&game)
-{
-update_winner_count(game->get_winner());
-games.push_back(std::move(game));
-get_winner_total(x_win,o_win,ties);
+TicTacToeManager::TicTacToeManager(TicTacToeData data) : data(data) {
+    vector<unique_ptr<TicTacToe>> games = data.get_games();
+    for(auto& game : games) {
+        update_winner_count(game->get_winner());
+    }    
 }
 
-void TicTacToeManager::update_winner_count(string winner)
-{ 
-    if (winner =="X")
-     {x_win+=1; }
-            if (winner =="O")
-            {o_win+=1; }
-                if(winner ==" ")
-                {ties+=1; }
+TicTacToeManager::~TicTacToeManager() {
+    data.save_games(games);
 }
 
-void TicTacToeManager::get_winner_total(int &x,int &o, int &t)
-{
-x=x_win;
-o=o_win;
-t=ties;
+void TicTacToeManager::save_game(unique_ptr<TicTacToe>& game) {
+    update_winner_count(game->get_winner());
+    games.push_back(move(game));
+}
 
+void TicTacToeManager::update_winner_count(string winner) {
+    if(winner == "X") {
+        x_win++;
+    }
+    else if(winner == "O") {
+        o_win++;
+    }
+    else {
+        ties++;
+    }
+}
+
+std::ostream& operator<<(std::ostream& out, TicTacToeManager& manager) {
+    for(auto& game : manager.games) {
+        cout<<*game;
+    }
+}
+
+void TicTacToeManager::get_winner_total(int& o, int& x, int& t) {
+    x = x_win;
+    o = o_win;
+    t = ties;
 }

@@ -1,21 +1,17 @@
+#include "tic_tac_toe.h"
 
-#include"tic_tac_toe.h"
-using std::string, std::vector;
-using namespace std;
+#ifndef TIC_TAC_TOE_4_H
+#define TIC_TAC_TOE_4_H
 
-#ifndef TICTACTOE4_H
-#define TICTACTOE4_H
-
-class TicTacToe_4: public TicTacToe
-{
-
-
+class TicTacToe4 : public TicTacToe {
 public:
-TicTacToe_4():TicTacToe(4){}  
+    TicTacToe4() : TicTacToe(4) {}
+    TicTacToe4(std::vector<string> p, std::string winner) : TicTacToe(p, winner) {}
+    void get_board_type(){std::cout<<"TicTacToe4\n";} 
 private:
-bool check_row_win();  
-bool check_col_win();   
-bool check_diag_win();   
+    bool check_column_win();
+    bool check_row_win();
+    bool check_diagonal_win();     
 };
 
 #endif

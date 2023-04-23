@@ -1,101 +1,115 @@
 #include <iostream>
-#include <string>
-#include <iomanip>
-#include <vector>
-#include<memory>
-#include <cstring>
-#include <climits>
-#include"tic_tac_toe.h"
-#include"tic_tac_toe_manager.h"
-#include"tic_tac_toe_3.h"
-#include"tic_tac_toe_4.h"
+#include <memory>
+#include "tic_tac_toe.h"
+#include "tic_tac_toe_3.h"
+#include "tic_tac_toe_4.h"
+#include "tic_tac_toe_manager.h"
+#include "tic_tac_toe_data.h"
+
+using std::cin;
+using std::cout;
 using std::unique_ptr;
 using std::make_unique;
-using std::string, std::vector,std::cin, std::cout;
-using namespace std;
 
-int main() 
+int main()
 {
+	string player;
+	string game_type;
+	unique_ptr <TicTacToe> game;
+	string exit_option;
+	TicTacToeData data;
+	TicTacToeManager manager(data);
+	int x_wins = 0;
+	int o_wins = 0;
+	int ties = 0;
 
-unique_ptr <TicTacToe> game;
-
-TicTacToeManager manage;  
-
-bool gover;  
-string first_player;
-int position; 
-
-char ch; 
-gover=false; 
-
-ch = 'Y';
-while(ch=='Y'|| ch=='y' ) 
-{
-int s;
-
-cout<<" Type 3 for a 3 x 3 board, or 4 for a 4 X 4 board \n";
-cin>>s;
-while (!(cin && (s>2 && s<5)))
-{
-    cin.clear(); 
-    cin.ignore(INT_MAX, '\n'); 
-    cout<<"Invalid character entered\n";
-    cout<<"Please, Enter a 3 or 4 for board type\n";
-    cin>>s;  	
-}
-if(s == 4)
-{
-game = make_unique<TicTacToe_4>();			
-cout<<"tictactoe 4----"<<endl;
-}
-else
-{
-game = make_unique<TicTacToe_3>();
-cout<<"tictactoe 3"<<endl;
-}
-cout<<"Enter a capital X or an capital O for first player"<<endl;
-cin>>first_player;
-while (((first_player!="X")&&(first_player!="O")) ||(cin.fail()))
-{
-    cout<<"Invalid character entered\n";
-    cout<<"Enter X or O for first player\n";
-    cin>>first_player;
-}
-
-game->start_game(first_player);	
-cout<<"First Player entered was an "<< game->get_player()<<endl;
-cout<<*game;  
-
-while(gover==false)
-{
-cout<<"Enter  position (1 - 9) Player "<<game->get_player()<<endl;
-cout<<"Enter  position (1 - 16) Player "<<game->get_player()<<endl;
-cout<<"(PROGRAM will EXIT, if any other character is entered)"<<endl;
-cin>>position;
-if (!(cin && (position>0 && position<17)))
-{
-return 0;	
-}
-game->mark_board(position);  
-cout<<*game; 
-
-gover = game->game_over();   
-}
-manage.save_game(game);
-int x; int o; int t;
-manage.get_winner_total(x,o,t);
-cout<<"Winners Tally :: X wins ="<<x<< "  O wins ="<<o << "  Ties ="<<t<<endl;
-cout<<"Game Over"<<endl;
-
-cout<<"ENTER Y or y to CONTINUE , or enter any other value to exit"<<endl;
-gover=false;
-	cin>>ch;
-		if (!(ch == 'Y'||ch =='y'))
+	do
+	{
+		get_game_type(game, game_type);
+		get_first_player(player);
+		game->start_game(player);
+		cout<<*game;	
+		while (!game->game_over())
 		{
-			cout<<manage;
-			return 0;
+			cin>>*game;
+			cout<<*game;
 		}
-}
-return 0;
+		
+		display_winner(game->get_winner());
+
+		manager.save_game(game);
+        manager.get_winner_total(o_wins, x_wins, ties);
+		display_totals(x_wins, o_wins, ties);
+		get_exit_option(exit_option);
+
+	} while (exit_option != "N" && exit_option != "n");
+
+	cout<<manager;
+	display_totals(x_wins, o_wins, ties);
+
+	return 0;
 }
 
+void get_first_player(string &player)
+{
+	do
+	{
+		cout << "\nEnter X or O: ";
+		cin >> player;
+		if (player == "x" || player == "X")
+			player = "X";
+		else if (player == "o" || player == "O")
+			player = "O";
+		else {
+			cout<< "Invalid input";
+		}
+	} while (player != "X" && player != "O");
+}
+
+void display_winner(string winner) 
+{
+	if(winner == "C") {
+		cout<<"The game ended in a tie\n\n";
+	}
+	else cout<<"The winner is player "<<winner<<"\n\n";	
+}
+
+void get_exit_option(string &exit_option)
+{
+	do
+	{
+		cout<<"Play another? (Y/N) ";
+        cin>>exit_option;		
+		if (exit_option == "y" || exit_option == "Y")
+			exit_option = "Y";
+		else if (exit_option == "n" || exit_option == "N")
+			exit_option = "N";
+		else {
+			cout<< "Invalid input\n";
+		}
+	} while (exit_option != "Y" && exit_option != "N");
+}
+
+void display_totals(int& x_wins, int& o_wins, int& ties) {
+	cout<<"X wins: "<<x_wins<<"\n";
+	cout<<"O wins: "<<o_wins<<"\n";
+	cout<<"Ties  : "<<ties<<"\n\n";	
+}
+
+void get_game_type(unique_ptr<TicTacToe>& game, string &game_type) {
+	do
+	{
+		cout << "\n";
+		cout << "Play TicTacToe 3 or TicTacToe 4: ";
+		cin >> game_type;
+		if (game_type == "3") {
+			game = make_unique<TicTacToe3>();
+		}
+		else if (game_type == "4") {
+			game = make_unique<TicTacToe4>();
+		}
+		else {
+			cout << "Invalid input";
+		}
+	} while (game_type != "3" && game_type != "4");
+}
